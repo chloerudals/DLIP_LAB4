@@ -1,8 +1,8 @@
 # DLIP_LAB4
 
-## project's objectives
+## Project's objectives
 
-## requirements
+## Requirements
 1. Hardware
 NVDIA graphic cards
 2. Software
@@ -50,7 +50,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
     conda install -c conda-forge onnx
     
     
-## essential codes
+## Essential codes to understand the program
 
 
-## how to run the program
+## How to run the program
