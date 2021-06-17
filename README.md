@@ -51,7 +51,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
     
 ## Essential codes to understand the program
 
->   Editing Parser
+#### Editing Parser
 >   Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'.
 >   
 >       parser.add_argument('--weights', nargs='+', type=str, default='yolov5s.pt', help='model.pt path(s)')
