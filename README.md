@@ -20,7 +20,6 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 ### Follow the steps for setting in the Anaconda. 
 >   Before starting, check your gpu to match the version
 >   
->       '''
 >       # create a conda env name=yolov5 (you can change your env name)
 >       conda create -n yolov5 python=3.8
 >       conda activate yolov5
@@ -49,42 +48,33 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 >      
 >       # Extra
 >       conda install -c conda-forge onnx
->       '''    
     
 ## Essential codes to understand the program
 
+>   Editing Parser
+>   Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'.
+>       parser.add_argument('--weights', nargs='+', type=str, default='yolov5s.pt', help='model.pt path(s)')
 
-Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'.
+>   Image size is set as 608.
+>       parser.add_argument('--img-size', type=int, default=608, help='inference size (pixels)')
 
-    parser.add_argument('--weights', nargs='+', type=str, default='yolov5s.pt', help='model.pt path(s)')
+>   conf-thres value increased to 0.3
+>       parser.add_argument('--conf-thres', type=float, default=0.3, help='object confidence threshold')
 
-Image size is set as 608.
+>   iou-thres value decreased to 0.4
+>       parser.add_argument('--iou-thres', type=float, default=0.4, help='IOU threshold for NMS')
 
-    parser.add_argument('--img-size', type=int, default=608, help='inference size (pixels)')
-
-conf-thres value increased to 0.3
-
-    parser.add_argument('--conf-thres', type=float, default=0.3, help='object confidence threshold')
-
-iou-thres value decreased to 0.4
-
-    parser.add_argument('--iou-thres', type=float, default=0.4, help='IOU threshold for NMS')
-
-view-img's action is set as 'store_false' to view the image. 
+>   view-img's action is set as 'store_false' to view the image. 
+>       parser.add_argument('--view-img', action='store_false', help='display results')
     
-    parser.add_argument('--view-img', action='store_false', help='display results')
-    
-save-txt's action is set as 'store_false' to save the result.
-    
-    parser.add_argument('--save-txt', action='store_false', help='save results to *.txt')
+>   save-txt's action is set as 'store_false' to save the result.
+>       parser.add_argument('--save-txt', action='store_false', help='save results to *.txt')
 
-classes's default is added as 2 to only view car class.
+>   classes's default is added as 2 to only view car class.
+>       parser.add_argument('--classes', nargs='+', type=int, default=2, help='filter by class: --class 0, or --class 0 2 3')
 
-    parser.add_argument('--classes', nargs='+', type=int, default=2, help='filter by class: --class 0, or --class 0 2 3')
-
-line-thickness is edited to 2.
-
-    parser.add_argument('--line-thickness', default=2, type=int, help='bounding box thickness (pixels)')
+>   line-thickness is edited to 2.
+>       parser.add_argument('--line-thickness', default=2, type=int, help='bounding box thickness (pixels)')
 
 
 
