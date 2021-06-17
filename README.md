@@ -53,27 +53,34 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 >   Editing Parser
 >   Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'.
+>   
 >       parser.add_argument('--weights', nargs='+', type=str, default='yolov5s.pt', help='model.pt path(s)')
 
 >   Image size is set as 608.
+>   
 >       parser.add_argument('--img-size', type=int, default=608, help='inference size (pixels)')
 
 >   conf-thres value increased to 0.3
 >       parser.add_argument('--conf-thres', type=float, default=0.3, help='object confidence threshold')
 
 >   iou-thres value decreased to 0.4
+>   
 >       parser.add_argument('--iou-thres', type=float, default=0.4, help='IOU threshold for NMS')
 
 >   view-img's action is set as 'store_false' to view the image. 
+>   
 >       parser.add_argument('--view-img', action='store_false', help='display results')
     
 >   save-txt's action is set as 'store_false' to save the result.
+>   
 >       parser.add_argument('--save-txt', action='store_false', help='save results to *.txt')
 
 >   classes's default is added as 2 to only view car class.
+>   
 >       parser.add_argument('--classes', nargs='+', type=int, default=2, help='filter by class: --class 0, or --class 0 2 3')
 
 >   line-thickness is edited to 2.
+>   
 >       parser.add_argument('--line-thickness', default=2, type=int, help='bounding box thickness (pixels)')
 
 
