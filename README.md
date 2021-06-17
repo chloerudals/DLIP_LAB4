@@ -17,7 +17,7 @@ NVDIA graphic cards
 Or You can follow the instructions from the yolov5 GitHub repository. [(requirements)](https://github.com/ultralytics/yolov5/blob/master/requirements.txt)
 
 
-## Follow the steps for setting in the Anaconda. 
+### Follow the steps for setting in the Anaconda. 
 > Before starting, check your gpu to match the version
 
     # create a conda env name=yolov5 (you can change your env name)
