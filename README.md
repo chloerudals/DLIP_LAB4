@@ -102,3 +102,4 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 ## How to run the program
 1. Download [video](https://drive.google.com/file/d/170Ccn_BTxPyWlN8Trfk9KXK6ykQmQNAW/view?usp=sharing) to your yolov5 repository.
+2. Overwrite [detect.py](https://github.com/chloerudals/DLIP_LAB4/blob/main/detect.py) to the same repository.
