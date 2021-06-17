@@ -1,5 +1,6 @@
 ''' -------------------
 Date : 17/06/2021
+Original file: https://github.com/ultralytics/yolov5/blob/master/detect.py
 Edited by JiHoon Kang and Kyungmin Do
 -------------------- '''
 
