@@ -3,7 +3,7 @@
 ## Project's objectives
 Since the use of private vehicle has increased due to COVID-19, finding parking spaces has been difficult even in Handong.
 Thus, we decided to show the empty parking spaces on the screen to make parking management easier.
-***
+---
 > Algorithm:
 > 1. Parking lines are detected using HoughlinesP and cars are detected using Yolov5s
 > 2. We improved the detection of parking lines, which had previously been covered by parked cars, by elongating the lines
@@ -13,7 +13,7 @@ Thus, we decided to show the empty parking spaces on the screen to make parking 
 > 6. Since cars park in the upper part of the parking space, y axis of the detected box's center is corrected about 10 pixels
 > 7. If a car comes in the camera frame, the car is considered as parking so entering car is printed.
 
-
+---
 ## Requirements
 1. Hardware
 NVDIA graphic cards
@@ -61,6 +61,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 >       # Extra
 >       conda install -c conda-forge onnx
     
+---
 ## Essential codes to understand the program
 
 #### Editing Parser
@@ -99,5 +100,5 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 
 
-
+---
 ## How to run the program
