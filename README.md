@@ -10,7 +10,7 @@ NVDIA graphic cards
 * cuDNN
 * Anaconda
 * YOLO V5
-* 
+
     create a conda env(conda reate -n yolov5 python=3.8)
     git clone https://github.com/ultralytics/yolov5.git
     
