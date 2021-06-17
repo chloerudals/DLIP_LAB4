@@ -26,11 +26,7 @@ NVDIA graphic cards
 > * Anaconda
 > * YOLO V5
 
-
-    
-
 Or You can follow the instructions from the yolov5 GitHub repository. [(requirements)](https://github.com/ultralytics/yolov5/blob/master/requirements.txt)
-
 
 ### Follow the steps for setting in the Anaconda. 
 >   Before starting, check your gpu to match the version
@@ -105,3 +101,4 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 
 ## How to run the program
+1. Download [video](https://drive.google.com/file/d/170Ccn_BTxPyWlN8Trfk9KXK6ykQmQNAW/view?usp=sharing) to your yolov5 repository.
