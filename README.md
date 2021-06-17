@@ -6,10 +6,10 @@
 1. Hardware
 NVDIA graphic cards
 2. Software
-* CUDA
-* cuDNN
-* Anaconda
-* YOLO V5
+> * CUDA
+> * cuDNN
+> * Anaconda
+> * YOLO V5
 
 
     
@@ -18,7 +18,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 
 ## Follow the steps for setting in the Anaconda. 
-> (Before starting, check your gpu to run)
+> Before starting, check your gpu to run
 
     # create a conda env name=yolov5 (you can change your env name)
     conda create -n yolov5 python=3.8
