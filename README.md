@@ -65,10 +65,14 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 ## Essential codes to understand the program
 
 #### Editing Parser
->   Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'. 
->   Image size is set as 608, conf-thres value increased to 0.3, and iou-thres value decreased to 0.4
->   view-img's action is set as 'store_false' to view the image; save-txt's action is set as 'store_false' to save the result.
->   classes's default is added as 2 to only view car class and the bounding box's line-thickness is edited to 2.
+>   - Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'. 
+>   - Image size is set = 608
+>   - conf-thres value = 0.3
+>   - iou-thres value = 0.4
+>   - view-img's action is set as 'store_false' to view the image.
+>   - save-txt's action is set as 'store_false' to save the result.
+>   - classes's default is added as 2 to only view car class.
+>   - The bounding box's line-thickness is edited to 2.
 >   
 >       parser.add_argument('--weights', nargs='+', type=str, default='yolov5s.pt', help='model.pt path(s)')
 >       parser.add_argument('--img-size', type=int, default=608, help='inference size (pixels)')
