@@ -1,4 +1,5 @@
-# DLIP_LAB4 CNN Object Detection
+# DLIP_LAB4 
+: CNN Object Detection
 
 ## Project's objectives
 Since the use of private vehicle has increased due to COVID-19, finding parking spaces has been difficult even in Handong.
