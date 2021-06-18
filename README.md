@@ -1,5 +1,5 @@
 # DLIP_LAB4
-
+CNN Object Detection
 ## Project's objectives
 Since the use of private vehicle has increased due to COVID-19, finding parking spaces has been difficult even in Handong.
 Thus, we decided to show the empty parking spaces on the screen to make parking management easier.
