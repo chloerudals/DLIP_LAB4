@@ -20,7 +20,7 @@ To watch a short explanatory video. [Click Here]()
 
 ## Requirements
 1. Hardware
-NVDIA graphic cards
+> * NVDIA graphic cards
 2. Software
 > * CUDA
 > * cuDNN
