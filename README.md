@@ -72,6 +72,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 #### Distinguish whether the parking space is empty or not.
 
+
 '''python
 for *xyxy, conf, cls in reversed(det):
     bx1, by1, bx2, by2 = xyxy[0], xyxy[1], xyxy[2], xyxy[3]
