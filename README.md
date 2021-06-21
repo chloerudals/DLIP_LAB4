@@ -2,7 +2,7 @@
 : CNN Object Detection
 
 ## Project's objectives
-Since the use of private vehicle has increased due to COVID-19, finding parking spaces has been difficult even in Handong.
+Since the use of private vehicle has increased due to COVID-19, finding parking spaces has been difficult even in our university.
 Thus, we decided to show the empty parking spaces on the screen to make parking management easier.
 
 <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/Img.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="parking lot"></img><br/>
