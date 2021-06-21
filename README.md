@@ -93,3 +93,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 2. Download [image](https://github.com/chloerudals/DLIP_LAB4/blob/main/Img.jpg) to your ***yolov5\data\images*** directory.
 3. Overwrite [detect.py](https://github.com/chloerudals/DLIP_LAB4/blob/main/detect.py) to the ***yolov5*** repository.
 4. Overwrite [datasets.py](https://github.com/chloerudals/DLIP_LAB4/blob/main/datasets.py) to your ***yolov5\utils\*** directory
+
+## Future work
+- Specify the vehicles whether they are entering, leaving or staying for a minute.
+- Give an alarm to the securitary, if there is a double-parked car.
