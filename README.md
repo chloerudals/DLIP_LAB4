@@ -64,6 +64,29 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 ## Essential codes to understand the program
 
+#### Finding the parking lines
+
+
+#### Detect cars
+
+
+#### Distinguish whether the parking space is empty or not.
+
+'''python
+for *xyxy, conf, cls in reversed(det):
+    bx1, by1, bx2, by2 = xyxy[0], xyxy[1], xyxy[2], xyxy[3]
+    bcx, bcy = abs(bx2 + bx1) / 2, abs(by2 + by1) / 2 + 10
+    cv2.circle(im0, (int(bcx), int(bcy)), 5, (255, 255, 255), 2)
+    parking_distance = math.sqrt((bcx - pcx)**2 + (bcy - pcy)**2)
+
+    if parking_distance < 40:
+        cv2.polylines(im0, [poly_points], 1, [0, 0, 255], 2)
+        cv2.line(im0, (int(bcx), int(bcy)), (int(pcx), int(pcy)), (255, 255, 255), 2)
+        cv2.putText(im0, "%d" %spot_cnt, text_coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+        Parked_Space_Array.append(spot_cnt)
+        break
+'''
+
 #### Editing Parser
 >   - Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'. 
 >   - Image size is set = 608
