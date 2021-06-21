@@ -30,7 +30,7 @@ To watch a short explanatory video. [Click Here]()
 Or You can follow the instructions from the yolov5 GitHub repository. [(requirements)](https://github.com/ultralytics/yolov5/blob/master/requirements.txt)
 
 ### Follow the steps for setting YOLO V5 in the Anaconda. 
->   Before starting, check your gpu to match the version
+>   Before starting, check your gpu to match the version.
 >   
 >       # create a conda env name=yolov5 (you can change your env name)
 >       conda create -n yolov5 python=3.8
@@ -62,31 +62,35 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 >       conda install -c conda-forge onnx
     
 
-## Essential codes to understand the program
+## Essential codes to understand the program.
 
-#### Finding the parking lines
+#### Finding the parking lines.
+>   - Parking lines are drawn by ***draw_parking*** function.
 
+    def draw_parking(image, rects, make_copy = True, color=[255, 0, 0], thickness=1, save = True):
 
-#### Detect cars
+#### Detect cars.
+>   - Detection is done by YOLO V5s with COCO datasets.
 
+#### Draw rectangles on the parking space.
 
 #### Distinguish whether the parking space is empty or not.
+>   - Firstly, find the centers of the parking space and the car.
+>   - If the distance between the centers are less than 40, the parking space is determined as occupied.
 
+    for *xyxy, conf, cls in reversed(det):
+        bx1, by1, bx2, by2 = xyxy[0], xyxy[1], xyxy[2], xyxy[3]
+        bcx, bcy = abs(bx2 + bx1) / 2, abs(by2 + by1) / 2 + 10
+        cv2.circle(im0, (int(bcx), int(bcy)), 5, (255, 255, 255), 2)
+        parking_distance = math.sqrt((bcx - pcx)**2 + (bcy - pcy)**2)
 
-'''python
-for *xyxy, conf, cls in reversed(det):
-    bx1, by1, bx2, by2 = xyxy[0], xyxy[1], xyxy[2], xyxy[3]
-    bcx, bcy = abs(bx2 + bx1) / 2, abs(by2 + by1) / 2 + 10
-    cv2.circle(im0, (int(bcx), int(bcy)), 5, (255, 255, 255), 2)
-    parking_distance = math.sqrt((bcx - pcx)**2 + (bcy - pcy)**2)
+        if parking_distance < 40:
+            cv2.polylines(im0, [poly_points], 1, [0, 0, 255], 2)
+            cv2.line(im0, (int(bcx), int(bcy)), (int(pcx), int(pcy)), (255, 255, 255), 2)
+            cv2.putText(im0, "%d" %spot_cnt, text_coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+            Parked_Space_Array.append(spot_cnt)
+            break
 
-    if parking_distance < 40:
-        cv2.polylines(im0, [poly_points], 1, [0, 0, 255], 2)
-        cv2.line(im0, (int(bcx), int(bcy)), (int(pcx), int(pcy)), (255, 255, 255), 2)
-        cv2.putText(im0, "%d" %spot_cnt, text_coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
-        Parked_Space_Array.append(spot_cnt)
-        break
-'''
 
 #### Editing Parser
 >   - Since we are using 'YOLO V5s model', we set the default for weights as 'yolov5s'. 
