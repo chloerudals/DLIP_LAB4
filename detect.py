@@ -1,4 +1,4 @@
-''' -------------------
+''' -----------------------------------------------------------------------------------------------------------------------
 Created Date : 17/06/2021
 Edited Date  : 21/06/2021
 
@@ -6,7 +6,7 @@ Original file  : https://github.com/ultralytics/yolov5/blob/master/detect.py
 Referenced file: https://github.com/dudesparsh/Parking_detector/blob/master/identify_parking_spots.ipynb
 
 Edited by JiHoon Kang and Kyungmin Do
--------------------- '''
+----------------------------------------------------------------------------------------------------------------------- '''
 
 from __future__ import division
 import argparse
