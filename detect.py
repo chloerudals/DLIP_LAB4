@@ -1,6 +1,10 @@
 ''' -------------------
-Date : 17/06/2021
-Original file: https://github.com/ultralytics/yolov5/blob/master/detect.py
+Created Date : 17/06/2021
+Edited Date  : 21/06/2021
+
+Original file  : https://github.com/ultralytics/yolov5/blob/master/detect.py
+Referenced file: https://github.com/dudesparsh/Parking_detector/blob/master/identify_parking_spots.ipynb
+
 Edited by JiHoon Kang and Kyungmin Do
 -------------------- '''
 
@@ -31,7 +35,6 @@ global arr_y1; global arr_y2; global arr_y3; global arr_y4
 
 @torch.no_grad()
 def detect(opt):
-    MaxSpace = 12
     CountCar = 0
     source, weights, view_img, save_txt, imgsz = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
@@ -144,16 +147,21 @@ def detect(opt):
 
             # Stream results
             if view_img:
-                Real_Parked_Space = 0
                 spot_cnt = 1
-                spot_cnt_prev = 1
-                EmptySpaceB4 = EmptySpace = 0
-                empty_space = []
+                Parked_Space_Array = []
                 for px1, py1, px2, py2, px3, py3, px4, py4 in zip(arr_x1, arr_y1, arr_x2, arr_y2, arr_x3, arr_y3, arr_x4, arr_y4):
                     poly_points = np.array([[px1, py1], [px2, py2], [px3, py3], [px4, py4]], dtype = np.int32).reshape((-1,1,2))
                     text_coordinate = int((px1 + px4)/2 - 10) , int(py1 - 30)
+                    if spot_cnt < 10:
+                        box_w1 = 10; box_h1 = 30; box_w2 = 30; box_h2 = 10
+                        box_x1, box_y1, box_x2, box_y2 = int((px1 + px4)/2 - 10 - box_w1), int(py1 - 30 - box_h1), int((px1 + px4)/2 - 10 + box_w2), int(py1 - 30 + box_h2)
+                    else:
+                        box_w1 = 10; box_h1 = 30; box_w2 = 50; box_h2 = 10
+                        box_x1, box_y1, box_x2, box_y2 = int((px1 + px4)/2 - 10 - box_w1), int(py1 - 30 - box_h1), int((px1 + px4)/2 - 10 + box_w2), int(py1 - 30 + box_h2)
+                    cv2.rectangle(im0, (box_x1, box_y1), (box_x2, box_y2), (255, 255, 255), -1)
                     pcx, pcy = abs(px3 + px1) / 2, abs(py3 + py1) / 2
                     cv2.circle(im0, (int(pcx), int(pcy)), 5, (255, 255, 255), 2)
+
                     for *xyxy, conf, cls in reversed(det):
                         bx1, by1, bx2, by2 = xyxy[0], xyxy[1], xyxy[2], xyxy[3]
                         bcx, bcy = abs(bx2 + bx1) / 2, abs(by2 + by1) / 2 + 10
@@ -164,49 +172,47 @@ def detect(opt):
                             cv2.polylines(im0, [poly_points], 1, [0, 0, 255], 2)
                             cv2.line(im0, (int(bcx), int(bcy)), (int(pcx), int(pcy)), (255, 255, 255), 2)
                             cv2.putText(im0, "%d" %spot_cnt, text_coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
-                            Real_Parked_Space += 1
-                            if spot_cnt_prev > len(empty_space):
-                                for i in range(spot_cnt_prev+1,spot_cnt):
-                                    empty_space.append(i)
-                            spot_cnt_prev = spot_cnt
+                            Parked_Space_Array.append(spot_cnt)
                             break
-                        else:
-                            cv2.polylines(im0, [poly_points], 1, [0, 255, 0], 2)
-                            cv2.putText(im0, "%d" %spot_cnt, text_coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
                     
                     spot_cnt += 1
-                if spot_cnt_prev == 11: empty_space.append(12)
-                    
                 
-                current_time = time.time()
-                videoFPS = 1 / (current_time - start_time)
-                # EmptySpace = MaxSpace - Real_Parked_Space
-                # Entering = CountCar - Real_Parked_Space - 1
-                EmptySpace = len(empty_space)
-                Entering = EmptySpaceB4 - EmptySpace
-                if EmptySpaceB4 > 0:
-                    if Entering > 0:
-                        if len(empty_space) == 1:
-                            EnteringStr = "{0} car is entering the parking lot".format(Entering)
-                            cv2.putText(im0, EnteringStr, (770, 680), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-                        else:
-                            EnteringStr = "{0} cars are entering the parking lot".format(Entering)
-                            cv2.putText(im0, EnteringStr, (735, 680), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-                    elif Entering < 0:
-                        EnteringStr = "car is leaving the parking lot"
+                Empty_Space_Array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                for P in Parked_Space_Array:
+                    Empty_Space_Array.remove(P)
+                
+                adj = 5
+                for idx in Empty_Space_Array:
+                    idx = idx-1
+                    px1, py1, px2, py2, px3, py3, px4, py4 = arr_x1[idx], arr_y1[idx], arr_x2[idx], arr_y2[idx], arr_x3[idx], arr_y3[idx], arr_x4[idx], arr_y4[idx]
+                    poly_points = np.array([[px1, py1], [px2, py2], [px3, py3], [px4, py4]], dtype = np.int32).reshape((-1,1,2))
+                    fillPoly_points = np.array([[px1+adj, py1+adj], [px2+adj, py2-adj], [px3-adj, py3-adj], [px4-adj, py4+adj]], dtype = np.int32).reshape((-1,1,2))
+                    text_coordinate = int((px1 + px4)/2 - 10) , int(py1 - 30)
+                    cv2.putText(im0, "%d" %(idx+1), text_coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 3)
+                    cv2.polylines(im0, [poly_points], 1, [255, 255, 255], 2)
+                    cv2.fillPoly(im0, [fillPoly_points], [0, 200, 0])
+                    
+                EmptySpace = len(Empty_Space_Array)
+                Entering = CountCar - len(Parked_Space_Array) - 1
+                if Entering > 0:
+                    if Entering == 1:
+                        EnteringStr = "{0} car is entering to the parking lot".format(Entering)
+                        cv2.putText(im0, EnteringStr, (770, 680), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+                    else:
+                        EnteringStr = "{0} cars are entering to the parking lot".format(Entering)
                         cv2.putText(im0, EnteringStr, (735, 680), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
                 
-                empty_space = [str(int) for int in empty_space]
-                strEmpty = "Available parking spaces: "+", ".join(empty_space)
+                Empty_Space_Array = [str(int) for int in Empty_Space_Array]
+                strEmpty = "Available parking spaces: "+", ".join(Empty_Space_Array)
+                cv2.putText(im0, strEmpty, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
+
+                current_time = time.time()
+                videoFPS = 1 / (current_time - start_time)
                 strFPS = f"FPS : {videoFPS:3.0f}"
                 strSpace = "Empty Space : {0}".format(EmptySpace)
                 cv2.putText(im0, strFPS, (1100, 650), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
                 cv2.putText(im0, strSpace, (1010, 620), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-                cv2.putText(im0, strEmpty, (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2)
                 cv2.imshow(str(p), im0)
-
-                EmptySpaceB4 = EmptySpace
-
                 if cv2.waitKey(1) & 0xFF == ord('q'): # 1 millisecond
                     break
                 start_time = current_time
@@ -233,7 +239,7 @@ def detect(opt):
     if save_txt or save_img:
         s = f"\n{len(list(save_dir.glob('labels/*.txt')))} labels saved to {save_dir / 'labels'}" if save_txt else ''
         print(f"Results saved to {save_dir}{s}")
-    
+
     print(f'Done. ({time.time() - t0:.3f}s)')
 
 # image is expected be in RGB color space# image 
@@ -450,7 +456,6 @@ if __name__ == '__main__':
         new_image, poly_dict = draw_parking(image, rects)
         delineated.append(new_image)
         spot_pos.append(poly_dict)
-    print(spot_pos)
     final_spot_dict = spot_pos[0]
     
     arr_x1 = []; arr_x2 = []; arr_x3 = []; arr_x4 = []
