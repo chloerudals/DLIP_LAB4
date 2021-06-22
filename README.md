@@ -114,7 +114,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 >   >       def draw_parking(image, rects, make_copy = True, color=[255, 0, 0], thickness=1, save = True):
 
->   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/delineated_image_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="delineated_image"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/delineated_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="delineated_image"></img><br/>
 
 
 >   >   - Assign a number to the parking spaces.
