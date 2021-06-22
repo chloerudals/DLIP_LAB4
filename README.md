@@ -69,7 +69,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 >   - Image processing is conducted.
 >   >   Since the lines are mostly white and yellow, select only yellow and white colors from the image.
 
-            def select_rgb_white_yellow(image): 
+>               def select_rgb_white_yellow(image): 
 
 >   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/white_yellow_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="white-yellow"></img><br/>
 
