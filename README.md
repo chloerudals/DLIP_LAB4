@@ -6,7 +6,7 @@ Since the use of private vehicle has increased due to COVID-19, finding parking 
 Thus, we decided to show the empty parking spaces on the screen to make parking management easier.
 
 <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/Img.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="parking lot"></img><br/>
-To watch a short explanatory video. [Click Here]()
+To watch a short explanatory video. [Click Here](https://youtu.be/GdNQdANagGA)
 
 > Algorithm:
 > 1. Parking lines are detected using HoughlinesP and cars are detected using Yolov5s
@@ -65,14 +65,68 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 ## Essential codes to understand the program.
 
 #### Finding the parking lines.
->   - Parking lines are drawn by ***draw_parking*** function.
+>   - First, you need a parking lot's picture to detect the parking lines. (an empty parking lot image would be perfect.)
+>   - Image processing is conducted.
+>   >   Since the lines are mostly white and yellow, select only yellow and white colors from the image.
 
-    def draw_parking(image, rects, make_copy = True, color=[255, 0, 0], thickness=1, save = True):
+            def select_rgb_white_yellow(image): 
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/white_yellow_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="white-yellow"></img><br/>
+
+>   >   Convert the image to gray scale.
+
+            def convert_gray_scale(image):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/gray_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="gray"></img><br/>
+
+
+>   >   Detect the edges with ***Canny***.
+
+            def detect_edges(image, low_threshold=500, high_threshold=1000):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/edge_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="detect edges"></img><br/>
+
+
+>   >   - Crop the image using ***roi***.
+
+            def filter_region(image, vertices):
+            def select_region(image):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/roi_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="roi"></img><br/>
+
+
+>   >   - Using HoughlinesP, detect the vertical parking lines.
+
+            def hough_lines(image):
+            def draw_lines(image, lines, color=[255, 0, 0], thickness=2, make_copy=True):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/line_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="line"></img><br/>
+
+
+>   >   - Draw a rectangle.
+
+def identify_blocks(image, lines, make_copy=True):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/rect_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="rect"></img><br/>
+>   >   - Adjust the rectangle.
+>   >   - Merge the rectangle with the adjusted verticle lines to delineate the parking lines.
+>   >   - Count the total parking spaces.
+
+            def draw_parking(image, rects, make_copy = True, color=[255, 0, 0], thickness=1, save = True):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/delineated_image_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="delineated_image"></img><br/>
+
+
+>   >   - Assign a number to the parking spaces.
+
+            def assign_spots_map(image, spot_dict=final_spot_dict, make_copy = True, color=[255, 0, 0], thickness=2):
+
+>   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/marked_spot_images.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="marked_spot_images"></img><br/>
+
+To see a detailed explanation. [Click Here](https://github.com/chloerudals/DLIP_LAB4/blob/main/identify_parking_spots.ipynb)
 
 #### Detect cars.
->   - Detection is done by YOLO V5s with COCO datasets.
-
-#### Draw rectangles on the parking space.
+>   - Car detection is done by YOLO V5s with COCO datasets.
 
 #### Distinguish whether the parking space is empty or not.
 >   - Firstly, find the centers of the parking space and the car.
@@ -114,7 +168,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
 
 
-
+[Demo Video](https://drive.google.com/file/d/1LPtyEVEorxBqGS-NXqe6Ns1JMTjdhgKB/view?usp=sharing)
 
 ## How to run the program
 1. Download [video](https://drive.google.com/file/d/170Ccn_BTxPyWlN8Trfk9KXK6ykQmQNAW/view?usp=sharing) to your ***yolov5*** repository.
