@@ -71,20 +71,20 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
 
             def select_rgb_white_yellow(image): 
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/white_yellow_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="white-yellow"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/white_yellow_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="white-yellow"></img><br/>
 
 >   >   Convert the image to gray scale.
 
             def convert_gray_scale(image):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/gray_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="gray"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/gray_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="gray"></img><br/>
 
 
 >   >   Detect the edges with ***Canny***.
 
             def detect_edges(image, low_threshold=500, high_threshold=1000):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/edge_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="detect edges"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/edge_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="detect edges"></img><br/>
 
 
 >   >   - Crop the image using ***roi***.
@@ -92,7 +92,7 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
             def filter_region(image, vertices):
             def select_region(image):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/roi_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="roi"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/roi_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="roi"></img><br/>
 
 
 >   >   - Using HoughlinesP, detect the vertical parking lines.
@@ -100,28 +100,28 @@ Or You can follow the instructions from the yolov5 GitHub repository. [(requirem
             def hough_lines(image):
             def draw_lines(image, lines, color=[255, 0, 0], thickness=2, make_copy=True):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/line_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="line"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/line_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="line"></img><br/>
 
 
 >   >   - Draw a rectangle.
 
 def identify_blocks(image, lines, make_copy=True):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/rect_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="rect"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/rect_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="rect"></img><br/>
 >   >   - Adjust the rectangle.
 >   >   - Merge the rectangle with the adjusted verticle lines to delineate the parking lines.
 >   >   - Count the total parking spaces.
 
             def draw_parking(image, rects, make_copy = True, color=[255, 0, 0], thickness=1, save = True):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/delineated_image_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="delineated_image"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/delineated_image_image.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="delineated_image"></img><br/>
 
 
 >   >   - Assign a number to the parking spaces.
 
             def assign_spots_map(image, spot_dict=final_spot_dict, make_copy = True, color=[255, 0, 0], thickness=2):
 
->   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/marked_spot_images.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="marked_spot_images"></img><br/>
+>   >   <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/images/marked_spot_images.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="marked_spot_images"></img><br/>
 
 To see a detailed explanation. [Click Here](https://github.com/chloerudals/DLIP_LAB4/blob/main/identify_parking_spots.ipynb)
 
@@ -177,5 +177,6 @@ To see a detailed explanation. [Click Here](https://github.com/chloerudals/DLIP_
 4. Overwrite [datasets.py](https://github.com/chloerudals/DLIP_LAB4/blob/main/datasets.py) to your ***yolov5\utils*** directory.
 
 ## Future work
+- Detect the parking lines without conducting parking space image and adjusting the lines.
 - Specify the vehicles whether they are entering, leaving or staying for a minute.
 - Give an alarm to the securitary, if there is a double-parked car.
