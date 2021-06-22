@@ -180,3 +180,6 @@ To see a detailed explanation. [Click Here](https://github.com/chloerudals/DLIP_
 - Detect the parking lines without conducting parking space image and adjusting the lines.
 - Specify the vehicles whether they are entering, leaving or staying for a minute.
 - Give an alarm to the securitary, if there is a double-parked car.
+
+## Reference
+[dudesparsh: Parking detector](https://github.com/dudesparsh/Parking_detector)
