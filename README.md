@@ -6,7 +6,7 @@ Since the use of private vehicle has increased due to COVID-19, finding parking 
 Thus, we decided to show the empty parking spaces on the screen to make parking management easier.
 
 <img src="https://github.com/chloerudals/DLIP_LAB4/blob/main/Img.jpg" width="500px" height="300px" title="px(픽셀) 크기 설정" alt="parking lot"></img><br/>
-To watch a short explanatory video. [Click Here](https://youtu.be/GdNQdANagGA)
+To watch a short explanatory video. [Click Here](https://youtu.be/og6CcAu_-JY)
 
 > Algorithm:
 > 1. Parking lines are detected using HoughlinesP and cars are detected using Yolov5s
